@@ -3,6 +3,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@types/websocket": "^1.0.7",
     "websocket": "^1.0.34"
   }
 }
