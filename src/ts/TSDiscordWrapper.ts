@@ -1,4 +1,5 @@
 import TSDiscordWrapperWS from "./ws/TSDiscordWrapperWS";
+import * as winston from "winston";
 
 export declare interface TSDiscordWrapper {
     
@@ -6,11 +7,25 @@ export declare interface TSDiscordWrapper {
      * The websocket manager for the wrapper.
      */
     ws: TSDiscordWrapperWS;
+
+    /**
+     * The logger for the wrapper.
+     */
+    logger: winston.Logger;
 }
 
 export class TSDiscordWrapper {
     constructor() {
-        this.ws = new TSDiscordWrapperWS();
+        this.ws = new TSDiscordWrapperWS(this);
+        this.logger = winston.createLogger({
+            level: 'info',
+            format: winston.format.json(),
+            transports: [
+                new winston.transports.Console(),
+                new winston.transports.File({filename: 'logs/error.log', level: 'error'}),
+                new winston.transports.File({filename: 'logs/combined.log'})
+            ]
+        });
     }
 
     async login(token: string) {

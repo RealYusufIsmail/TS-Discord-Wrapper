@@ -229,4 +229,12 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# Secret
+config/secret.json
+
+#Ignore all js files
+*.js
+src/**/*.js
+src/ts/**/*.js
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,node

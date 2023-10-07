@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@types/websocket": "^1.0.7",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "winston": "^3.10.0"
   }
 }
