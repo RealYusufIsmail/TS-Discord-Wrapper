@@ -1,5 +1,10 @@
 {
+  "name": "ts-discord-wrapper",
+  "version": "0.0.1",
+  "description": "A wrapper for the Discord API written in TypeScript",
+  "license": "apache-2.0",
   "devDependencies": {
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {

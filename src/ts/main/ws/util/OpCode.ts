@@ -57,6 +57,6 @@ export const OpCodeInfoMap: Record<OpCode, OpCodeInfo> = {
  * @param code The integer code to convert.
  * @returns The corresponding OpCode.
  */
-export function fromInt(code: number): OpCode {
+export function get(code: number): OpCode {
     return code in OpCode ? code : OpCode.UNKNOWN;
 }

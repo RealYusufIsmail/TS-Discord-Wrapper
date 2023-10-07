@@ -66,7 +66,7 @@ export class CloseCodeInfo {
      * @param code The integer code to convert to a CloseCodeInfo instance.
      * @returns The CloseCodeInfo instance corresponding to the provided code.
      */
-    static fromInt(code: number): CloseCodeInfo {
+    static get(code: number): CloseCodeInfo {
         for (const closeCode of Object.values(CloseCode)) {
             if (closeCode === code) {
                 return CloseCodeInfo.getCloseCodeInfo(closeCode);

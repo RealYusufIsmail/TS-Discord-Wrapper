@@ -237,4 +237,7 @@ config/secret.json
 src/**/*.js
 src/ts/**/*.js
 
+#Ignore all index.ts file
+src/ts/index.ts
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,node

@@ -1,25 +1,19 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "moduleResolution": "node",
+    "module": "CommonJS", // Use CommonJS module format
     "target": "ESNext",
     "lib": ["ESNext"],
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"],
-      "@helpers/*": ["src/helpers/*"]
-    },
+    "baseUrl": "./src", // Set this to the base directory of your source files
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
-  //stop making .js files
-    "watchOptions": {
-        "watchFile": "useFsEvents",
-        "excludeDirectories": ["node_modules"]
-    }
 }

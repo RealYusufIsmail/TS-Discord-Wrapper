@@ -1,7 +1,8 @@
-import TSDiscordWrapperWS from "../TSDiscordWrapperWS";
-import {OpCode} from "./OpCode";
-import {TSDiscordWrapper} from "../../TSDiscordWrapper";
-import {CloseCode, CloseCodeInfo} from "./CloseCode";
+import TSDiscordWrapperWS from "../TSDiscordWrapperWS.ts";
+import {OpCode} from "./OpCode.ts";
+import {CloseCode, CloseCodeInfo} from "./CloseCode.ts";
+import {TSDiscordWrapper} from "../../TSDiscordWrapper.ts";
+import { connection } from 'websocket'; // Import the necessary types/interfaces from 'websocket'.
 
 export class Heartbeat {
     private readonly websocket: TSDiscordWrapperWS | null = null;
@@ -11,17 +12,16 @@ export class Heartbeat {
     private heartbeatStartTime: number = 0;
     private readonly tSDiscordWrapper : TSDiscordWrapper
 
-    constructor(websocket: TSDiscordWrapperWS, connection : any, tSDiscordWrapper : TSDiscordWrapper) {
+    constructor(websocket: TSDiscordWrapperWS, tSDiscordWrapper : TSDiscordWrapper) {
         this.websocket = websocket;
-        this.connection = connection;
         this.tSDiscordWrapper = tSDiscordWrapper;
     }
 
-    async start(hearbeatInterval: number, connected: boolean, sequenceNumber: number | null) {
+    async start(hearbeatInterval: number, connected: boolean, sequenceNumber: number | null, connection: connection) {
 
         const heartbeat = {
-            op: OpCode.HEARTBEAT,
-            d: sequenceNumber
+            "op": OpCode.HEARTBEAT,
+            "d": sequenceNumber
         }
 
         this.heartbeatThread = new Promise(async (resolve, reject) => {
@@ -30,7 +30,7 @@ export class Heartbeat {
                     if (this.heartbeatsMissed >= 2) {
                         this.heartbeatsMissed = 0;
                         this.tSDiscordWrapper.logger.error("Heartbeat missed 2 times, reconnecting...");
-                        await this.websocket?.sendClose(this.connection, CloseCode.MISSED_HEARTBEAT, CloseCodeInfo.fromInt(CloseCode.MISSED_HEARTBEAT).getReason());
+                        await this.websocket?.sendClose(this.connection, CloseCode.MISSED_HEARTBEAT, CloseCodeInfo.get(CloseCode.MISSED_HEARTBEAT).getReason());
                     } else {
                         this.heartbeatsMissed += 1;
                         await this.websocket?.send(this.connection, JSON.stringify(heartbeat));
