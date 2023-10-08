@@ -38,30 +38,6 @@ export class CloseCodeInfo {
     }
 
     /**
-     * Get the CloseCode.
-     * @returns The CloseCode.
-     */
-    getCode(): CloseCode {
-        return this.code;
-    }
-
-    /**
-     * Get the reason for the CloseCode.
-     * @returns The reason for the CloseCode.
-     */
-    getReason(): string {
-        return this.reason;
-    }
-
-    /**
-     * Check whether the connection should reconnect.
-     * @returns True if the connection should reconnect, false otherwise.
-     */
-    shouldReconnect(): boolean {
-        return this.reconnect;
-    }
-
-    /**
      * Static factory method to create a CloseCodeInfo instance from an integer code.
      * @param code The integer code to convert to a CloseCodeInfo instance.
      * @returns The CloseCodeInfo instance corresponding to the provided code.
@@ -141,5 +117,29 @@ export class CloseCodeInfo {
         } else {
             return result as CloseCode;
         }
+    }
+
+    /**
+     * Get the CloseCode.
+     * @returns The CloseCode.
+     */
+    getCode(): CloseCode {
+        return this.code;
+    }
+
+    /**
+     * Get the reason for the CloseCode.
+     * @returns The reason for the CloseCode.
+     */
+    getReason(): string {
+        return this.reason;
+    }
+
+    /**
+     * Check whether the connection should reconnect.
+     * @returns True if the connection should reconnect, false otherwise.
+     */
+    shouldReconnect(): boolean {
+        return this.reconnect;
     }
 }
