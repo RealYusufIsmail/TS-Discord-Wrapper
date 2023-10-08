@@ -58,7 +58,7 @@ export class SnowFlakeImpl implements SnowFlake {
 
     constructor(idAsLong: number) {
         this._id = idAsLong.toString();
-        this._idAsLong = idAsLong;
+        this._idAsLong = idAsLong as number;
         this._asTimestamp = (this._idAsLong >> 22) + 1420070400000;
         this._asWorkerId = (this._idAsLong & 0x3E0000) >> 17;
         this._asProcessId = (this._idAsLong & 0x1F000) >> 12;
