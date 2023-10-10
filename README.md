@@ -11,12 +11,12 @@ npm i ts-discord-wrapper
 ## Usage
 
 ```typescript
-import {EventNames} from "./main/ws/util/EventNames.ts";
-import {ReadEvent} from "./main/events/core/ReadEvent.ts";
-import {TSDiscordWrapper} from "./main/TSDiscordWrapper.ts";
-import GateWayIntent from "./main/GateWayIntent.ts";
-import {SlashBuilder} from "./main/interactions/slash/SlashBuilder.ts";
-import {SlashEvent} from "./main/events/core/interaction/SlashEvent.ts";
+import {EventNames} from "ts-discord-wrapper/src/ts/main/ws/util/EventNames.ts";
+import {ReadEvent} from "ts-discord-wrapper/src/ts/main/events/core/ReadEvent.ts";
+import {TSDiscordWrapper} from "ts-discord-wrapper/src/ts/main/TSDiscordWrapper.ts";
+import GateWayIntent from "ts-discord-wrapper/src/ts/main/GateWayIntent.ts";
+import {SlashBuilder} from "ts-discord-wrapper/src/ts/main/interactions/slash/SlashBuilder.ts";
+import {SlashEvent} from "ts-discord-wrapper/src/ts/main/events/core/interaction/SlashEvent.ts";
 
 const tsDiscordWrapper = new TSDiscordWrapper("TOKEN");
 
