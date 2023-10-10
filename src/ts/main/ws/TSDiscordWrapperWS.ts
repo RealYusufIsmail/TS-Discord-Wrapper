@@ -1,14 +1,15 @@
 import {platform} from 'os';
 import {client, connection} from 'websocket'; // Import the necessary types/interfaces from 'websocket'.
 import {Heartbeat} from './util/Heartbeat.ts';
-import {TSDiscordWrapper} from '../TSDiscordWrapper.ts'; // Remove .ts extension
-import {TSDiscordWrapperInfo} from '../TSDiscordWrapperInfo.ts'; // Remove .ts extension
+import {TSDiscordWrapper} from '../TSDiscordWrapper.ts';
+import {TSDiscordWrapperInfo} from '../TSDiscordWrapperInfo.ts';
 import {get, OpCode} from './util/OpCode.ts';
 import GateWayIntent from "../GateWayIntent.ts";
 import {ReadyHandler} from "../events/handlers/ReadyHandler.ts";
 import {CloseCode, CloseCodeInfo} from "./util/CloseCode.ts";
 import {EventNames} from "./util/EventNames.ts";
 import * as process from "process";
+import {InteractionHandler} from "../events/handlers/InteractionHandler.ts";
 
 /**
  * Handles the websocket connection to the Discord API.
@@ -250,6 +251,10 @@ export default class TSDiscordWrapperWS {
             }
             case EventNames.RESUMED: {
                 this.attemptedToResume = false;
+                break;
+            }
+            case EventNames.INTERACTION_CREATE: {
+                new InteractionHandler(this.tsDiscordWrapper, data);
             }
         }
     }

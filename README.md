@@ -11,21 +11,35 @@ npm i ts-discord-wrapper
 ## Usage
 
 ```typescript
-const { TSDiscordWrapper } = require("./main/TSDiscordWrapper");
-import GateWayIntent from "./main/GateWayIntent.ts";
 import {EventNames} from "./main/ws/util/EventNames.ts";
 import {ReadEvent} from "./main/events/core/ReadEvent.ts";
+import {TSDiscordWrapper} from "./main/TSDiscordWrapper.ts";
+import GateWayIntent from "./main/GateWayIntent.ts";
+import {SlashBuilder} from "./main/interactions/slash/SlashBuilder.ts";
+import {SlashEvent} from "./main/events/core/interaction/SlashEvent.ts";
 
-const tsDiscordWrapper = new TSDiscordWrapper();
+const tsDiscordWrapper = new TSDiscordWrapper("TOKEN");
 
-tsDiscordWrapper.login("TOKEN", GateWayIntent.getDefaultIntents()).then(() => {
+tsDiscordWrapper.login(GateWayIntent.getDefaultIntents()).then(() => {
     tsDiscordWrapper.logger.info("Logged in");
 });
 
 tsDiscordWrapper.eventEmitter.on(EventNames.READY, (readEvent: ReadEvent) => {
-   tsDiscordWrapper.logger.info("Ready as " + readEvent.getBot().username);
+    tsDiscordWrapper.logger.info("Ready as " + readEvent.getBot().getUsername());
 });
 
+tsDiscordWrapper.onReady(() => {
+    tsDiscordWrapper.logger.info("Ready");
+    new SlashBuilder(tsDiscordWrapper)
+        .addSlashCommand("ping", "pong")
+        .build();
+});
+
+tsDiscordWrapper.eventEmitter.on(EventNames.INTERACTION_CREATE, (slashCommand : SlashEvent) => {
+    if (slashCommand.getInteraction().data.name == "ping") {
+        slashCommand.getInteraction().sendReply("pong", false, false);
+    }
+});
 ```
 
 ## Contributing

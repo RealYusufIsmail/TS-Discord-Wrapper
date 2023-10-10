@@ -1,14 +1,33 @@
 {
   "name": "ts-discord-wrapper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A wrapper for the Discord API written in TypeScript",
-  "license": "apache-2.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RealYusufIsmail/TS-Discord-Wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RealYusufIsmail/TS-Discord-Wrapper/issues"
+  },
+  "author": "Yusuf Ismail (RealYusufIsmail)",
+  "keywords": [
+    "discord",
+    "wrapper",
+    "typescript",
+    "api",
+    "discord-api",
+    "discord-wrapper",
+    "ts-discord-wrapper"
+  ],
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "@types/websocket": "^1.0.7",
+    "rest-api-handler": "^2.22.18",
+    "ts-color-class": "^0.10.1",
     "websocket": "^1.0.34",
     "winston": "^3.10.0"
   }

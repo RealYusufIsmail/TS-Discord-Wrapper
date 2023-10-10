@@ -6,13 +6,20 @@
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "module": "CommonJS", // Use CommonJS module format
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
-    "baseUrl": "./src", // Set this to the base directory of your source files
+    "baseUrl": "./src/ts/main", // Set this to the base directory of your source files
+    "paths": {
+      "*": [
+        "*",
+        "src/ts/main/*",
+      ]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
