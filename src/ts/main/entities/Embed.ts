@@ -74,6 +74,11 @@ export declare interface Embed {
      * The fields of the embed
      */
     fields ?: EmbedField[];
+
+    /**
+     * gets everything as json
+     */
+    toJson() : any;
 }
 
 export class Embed {
@@ -175,5 +180,49 @@ export class Embed {
             json.author ? EmbedAuthor.fromJson(json.author) : undefined,
             json.fields ? json.fields.map((field: any) => EmbedField.fromJson(field)) : undefined
         );
+    }
+
+    public toJson() : any {
+        const json : any = {};
+        if (this.title) {
+            json.title = this.title;
+        }
+        if (this.type) {
+            json.type = this.type;
+        }
+        if (this.description) {
+            json.description = this.description;
+        }
+        if (this.url) {
+            json.url = this.url;
+        }
+        if (this.timestamp) {
+            json.timestamp = this.timestamp.toISOString();
+        }
+        if (this.color) {
+            json.color = this.color.getRGB() && 0xFFFFFF;
+        }
+        if (this.footer) {
+            json.footer = this.footer.toJson();
+        }
+        if (this.image) {
+            json.image = this.image.toJson();
+        }
+        if (this.thumbnail) {
+            json.thumbnail = this.thumbnail.toJson();
+        }
+        if (this.video) {
+            json.video = this.video.toJson();
+        }
+        if (this.provider) {
+            json.provider = this.provider.toJson();
+        }
+        if (this.author) {
+            json.author = this.author.toJson();
+        }
+        if (this.fields) {
+            json.fields = this.fields.map((field) => field.toJson());
+        }
+        return json;
     }
 }

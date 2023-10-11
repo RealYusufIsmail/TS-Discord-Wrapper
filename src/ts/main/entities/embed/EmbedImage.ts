@@ -18,6 +18,11 @@ export declare interface EmbedImage {
      * The width of the image
      */
     width ?: number;
+
+    /**
+     * Converts this image to json
+     */
+    toJson(): any;
 }
 
 export class EmbedImage {
@@ -54,5 +59,14 @@ export class EmbedImage {
             data.proxy_url ? data.proxy_url : undefined,
             data.height ? data.height : undefined,
             data.width ? data.width : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            url: this.url,
+            proxy_url: this.proxyUrl,
+            height: this.height,
+            width: this.width
+        };
     }
 }

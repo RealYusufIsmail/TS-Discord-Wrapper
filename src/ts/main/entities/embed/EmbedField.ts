@@ -13,6 +13,11 @@ export declare interface EmbedField {
      * Whether the field is inline
      */
     inline ?: boolean;
+
+    /**
+     * Converts this field to json
+     */
+    toJson(): any;
 }
 
 export class EmbedField {
@@ -42,5 +47,13 @@ export class EmbedField {
         return new EmbedField(data.name,
             data.value,
             data.inline ? data.inline : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            name: this.name,
+            value: this.value,
+            inline: this.inline
+        };
     }
 }

@@ -8,6 +8,11 @@ export declare interface EmbedProvider {
      * The url of the provider
      */
     url ?: string;
+
+    /**
+     * Converts this provider to json
+     */
+    toJson(): any;
 }
 
 export class EmbedProvider {
@@ -30,5 +35,12 @@ export class EmbedProvider {
     public static fromJson(data : any) : EmbedProvider {
         return new EmbedProvider(data.name,
             data.url ? data.url : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            name: this.name,
+            url: this.url
+        };
     }
 }

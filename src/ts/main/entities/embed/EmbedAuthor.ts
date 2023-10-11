@@ -18,6 +18,11 @@ export declare interface EmbedAuthor {
      * The proxy icon url of the footer
      */
     proxyIconUrl ?: string;
+
+    /**
+     * Converts this author to json
+     */
+    toJson(): any;
 }
 
 export class EmbedAuthor {
@@ -54,5 +59,14 @@ export class EmbedAuthor {
             data.url ? data.url : undefined,
             data.icon_url ? data.icon_url : undefined,
             data.proxy_icon_url ? data.proxy_icon_url : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            text: this.text,
+            url: this.url,
+            icon_url: this.iconUrl,
+            proxy_icon_url: this.proxyIconUrl
+        };
     }
 }
