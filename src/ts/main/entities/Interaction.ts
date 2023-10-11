@@ -5,6 +5,7 @@ import {Message} from "./Message.ts";
 import {User} from "./User.ts";
 import {TSDiscordWrapper} from "../TSDiscordWrapper.ts";
 import {ApplicationCommandsEndpoint} from "../rest/EndPoint.ts";
+import {Embed} from "./Embed.ts";
 
 export declare interface Interaction extends SnowFlake {
     /**
@@ -128,6 +129,22 @@ export class Interaction extends SnowFlakeImpl {
             "data": {
                 "content": content,
                 "tts": isTTS,
+                "flags": ephemeral ? 64 : 0
+            }
+        }
+
+        this.tsDiscordWrapper.restApiHandler
+            .performPostRequest(ApplicationCommandsEndpoint.REPLY_TO_SLASH_COMMAND,  mainBody, [this.id, this.token as string])
+            .catch((error) => {
+                this.tsDiscordWrapper.logger.error("Failed to send reply to interaction: " + error);
+            });
+    }
+
+    sendReplyEmbed(embed: Embed, ephemeral: boolean): void {
+        const mainBody = {
+            "type": 4,
+            "data": {
+                "embeds": [embed.toJson()],
                 "flags": ephemeral ? 64 : 0
             }
         }

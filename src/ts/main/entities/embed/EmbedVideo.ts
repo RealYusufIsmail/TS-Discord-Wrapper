@@ -19,6 +19,11 @@ export declare interface EmbedVideo {
      * The width of the video
      */
     width ?: number;
+
+    /**
+     * Converts this video to json
+     */
+    toJson(): any;
 }
 
 export class EmbedVideo {
@@ -55,5 +60,14 @@ export class EmbedVideo {
             data.proxy_url ? data.proxy_url : undefined,
             data.height ? data.height : undefined,
             data.width ? data.width : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            url: this.url,
+            proxy_url: this.proxyUrl,
+            height: this.height,
+            width: this.width
+        };
     }
 }

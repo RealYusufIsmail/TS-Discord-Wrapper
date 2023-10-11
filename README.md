@@ -32,12 +32,21 @@ tsDiscordWrapper.onReady(() => {
     tsDiscordWrapper.logger.info("Ready");
     new SlashBuilder(tsDiscordWrapper)
         .addSlashCommand("ping", "pong")
+        .addSlashCommand("embed", "embed test")
         .build();
 });
 
 tsDiscordWrapper.eventEmitter.on(EventNames.INTERACTION_CREATE, (slashCommand : SlashEvent) => {
     if (slashCommand.getInteraction().data.name == "ping") {
         slashCommand.getInteraction().sendReply("pong", false, false);
+    } else if (slashCommand.getInteraction().data.name == "embed") {
+        let embed = slashCommand.getTSDiscordWrapper()
+            .embedBuilder
+            .setTitle("Test")
+            .setDescription("This is a test")
+            .setColor(new Color(0, 255, 0))
+            .build()
+        slashCommand.getInteraction().sendReplyEmbed(embed, true);
     }
 });
 ```

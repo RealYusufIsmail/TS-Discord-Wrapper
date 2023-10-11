@@ -13,6 +13,11 @@ export declare interface EmbedFooter {
      * The proxy icon url of the footer
      */
     proxyIconUrl ?: string;
+
+    /**
+     * Converts this footer to json
+     */
+    toJson(): any;
 }
 
 export class EmbedFooter {
@@ -42,5 +47,13 @@ export class EmbedFooter {
         return new EmbedFooter(data.text,
             data.icon_url ? data.icon_url : undefined,
             data.proxy_icon_url ? data.proxy_icon_url : undefined);
+    }
+
+    public toJson() : any {
+        return {
+            text: this.text,
+            icon_url: this.iconUrl,
+            proxy_icon_url: this.proxyIconUrl
+        };
     }
 }
